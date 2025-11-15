@@ -1,4 +1,20 @@
 extends ../../layouts/default.pug
 
+include ../../mixins/box-head.pug
+
 block main 
-    h1 Danh sách sản phẩm
+    .container.my-3 
+        .row 
+            .col-12 
+                +box-head('Danh sách sản phẩm')
+
+        .row 
+            .col-sm-6.col-md-4.mb-3 
+                .card.product-item.h-100
+                    .inner-image
+                        img.card-img-top(src="https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/1.webp", alt="Sản phẩm 1")
+                    .card-body.inner-content
+                        h3.card-title.inner-title Sản phẩm 1
+                        p.inner-price-now.mb-1 100.000 VNĐ
+                        p.inner-price-old.mb-1 150.000 VNĐ
+                        p.inner-discount.mb-0 10%

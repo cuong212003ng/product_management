@@ -1,1 +1,17 @@
-header Header
+header.header
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+        .container-fluid.px-3
+            a.navbar-brand(href="/")
+                img.logo-header(src="/images/logo_duyTan.png", alt="logo")
+            button.navbar-toggler(type="button", data-bs-toggle="collapse", data-bs-target="#mainNavbar", aria-controls="mainNavbar", aria-expanded="false", aria-label="Toggle navigation")
+                span.navbar-toggler-icon
+            #mainNavbar.collapse.navbar-collapse
+                ul.navbar-nav.ms-auto.mb-2.mb-lg-0
+                    li.nav-item
+                        a.nav-link.active(aria-current="page", href="/") Trang chủ
+                    li.nav-item
+                        a.nav-link(href="/products") Sản phẩm
+                    li.nav-item
+                        a.nav-link(href="/about") Về chúng tôi
+                    li.nav-item
+                        a.nav-link(href="/contact") Liên hệ

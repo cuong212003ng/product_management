@@ -1,3 +1,324 @@
-.test {
+/* ==========================================================================
+   1. CẤU HÌNH CHUNG & BỐ CỤC TỔNG THỂ
+   - Đặt chiều cao, phông chữ, background chung
+   - Thiết lập body dùng flex để đẩy footer xuống cuối trang
+   ========================================================================== */
 
+html,
+body {
+  height: 100%;
 }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f7fa;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+main.main-content {
+  /* Phần nội dung chính sẽ giãn ra chiếm khoảng trống giữa header và footer */
+  flex: 1 0 auto;
+}
+
+/* ==========================================================================
+   2. KHU VỰC HEADER
+   - Logo, thanh navbar, hiệu ứng dính & đổ bóng khi cuộn trang
+   ========================================================================== */
+
+.logo-header {
+  /* Giảm chiều cao logo để header gọn hơn */
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+header.header {
+  /* Không cho header bị co lại khi sử dụng flex layout với body */
+  flex-shrink: 0;
+  /* Hiệu ứng mượt cho màu nền và đổ bóng khi cuộn */
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Trạng thái header khi người dùng cuộn xuống (thêm class bằng JS) */
+header.header.header-scrolled {
+  background-color: #ffffff;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+}
+
+/* Tối ưu lại độ cao của thanh navbar bên trong header */
+header.header .navbar {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+/* ==========================================================================
+   3. THÀNH PHẦN CHUNG TRONG MAIN: DANH SÁCH SẢN PHẨM
+   - Block tiêu đề
+   - Thẻ sản phẩm (card)
+   ========================================================================== */
+
+/* Tiêu đề khối (ví dụ: Sản phẩm nổi bật, Sản phẩm mới) */
+.box-head .inner-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* Card sản phẩm */
+.product-item {
+  border: none;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: #ffffff;
+}
+
+/* Vùng chứa ảnh sản phẩm để ẩn phần bị tràn khi hover phóng to */
+.product-item .inner-image {
+  overflow: hidden;
+}
+
+.product-item img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+/* Hiệu ứng nổi lên và đổ bóng mạnh hơn khi hover card */
+.product-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+}
+
+/* Ảnh phóng to nhẹ khi hover card */
+.product-item:hover img {
+  transform: scale(1.06);
+}
+
+.product-item .inner-content {
+  padding: 14px 16px 16px;
+}
+
+.product-item .inner-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+/* Giá hiện tại (đã giảm) */
+.inner-price-now {
+  font-weight: 700;
+  color: #e53935;
+  font-size: 1rem;
+}
+
+/* Giá gốc (gạch ngang) */
+.inner-price-old {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  text-decoration: line-through;
+}
+
+/* Badge thể hiện % giảm giá */
+.inner-discount {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 3px 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #f97316, #facc15);
+  border-radius: 999px;
+}
+
+/* ==========================================================================
+   4. TRANG HOME (HOME PAGE)
+   - Hero section, CTA, card, newsletter
+   ========================================================================== */
+
+.home-page {
+  /* Khoảng cách phía dưới để tách với footer */
+  padding-bottom: 32px;
+}
+
+/* Hero đầu trang: background gradient nhẹ + viền dưới */
+.hero-section {
+  background: radial-gradient(circle at top left, #e0f2fe 0, #f9fafb 38%, #ffffff 70%);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.hero-section h1 {
+  font-size: 2.2rem;
+  line-height: 1.25;
+  color: #0f172a;
+}
+
+.hero-section .lead {
+  font-size: 1.05rem;
+  color: #4b5563;
+}
+
+/* Ảnh minh họa trong hero */
+.hero-image-wrapper img {
+  max-width: 420px;
+  border-radius: 24px;
+}
+
+/* Nút chính trên trang home (CTA chính) */
+.home-page .btn-primary {
+  border: none;
+  background-image: linear-gradient(135deg, #2563eb, #1d4ed8);
+  box-shadow: 0 10px 18px rgba(37, 99, 235, 0.35);
+}
+
+.home-page .btn-primary:hover {
+  background-image: linear-gradient(135deg, #1d4ed8, #1e40af);
+  box-shadow: 0 14px 26px rgba(37, 99, 235, 0.45);
+}
+
+/* Nút phụ dạng outline trên home (thường là nút phụ) */
+.home-page .btn-outline-secondary {
+  border-radius: 999px;
+}
+
+/* Card nhỏ trên home (ví dụ: lợi ích, tính năng) */
+.home-page .card {
+  border-radius: 16px;
+}
+
+.home-page .card .card-body {
+  padding: 16px 18px;
+}
+
+/* Khu vực đăng ký nhận newsletter */
+.newsletter-section {
+  background-color: #f3f4f6;
+}
+
+.newsletter-section form .form-control {
+  border-radius: 999px;
+  padding-left: 18px;
+}
+
+.newsletter-section button.btn {
+  border-radius: 999px;
+}
+
+/* Văn bản phản hồi sau khi submit email newsletter */
+#newsletterFeedback {
+  min-height: 18px;
+}
+
+/* ==========================================================================
+   5. KHU VỰC FOOTER
+   - Thông tin liên hệ, liên kết, bản quyền
+   ========================================================================== */
+
+footer.footer {
+  background-color: #222;
+  color: #f1f1f1;
+  padding: 40px 0 20px;
+  font-size: 14px;
+  flex-shrink: 0;
+  /* Tạo khoảng cách rõ ràng giữa main và footer */
+  margin-top: 32px;
+}
+
+footer.footer a {
+  color: #f1f1f1;
+  text-decoration: none;
+}
+
+footer.footer a:hover {
+  color: #ff9800;
+  text-decoration: underline;
+}
+
+/* Phần trên của footer: chia cột thông tin */
+footer.footer .footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+footer.footer .footer-column {
+  flex: 1 1 220px;
+  min-width: 200px;
+}
+
+footer.footer h4 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+footer.footer p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+footer.footer .footer-links,
+footer.footer .footer-contact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer.footer .footer-links li,
+footer.footer .footer-contact li {
+  margin-bottom: 8px;
+}
+
+footer.footer .footer-contact span {
+  font-weight: 500;
+}
+
+/* Phần dưới footer: copyright */
+footer.footer .footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 12px;
+  text-align: center;
+  font-size: 13px;
+  color: #bbbbbb;
+}
+
+/* ==========================================================================
+   6. RESPONSIVE
+   - Tối ưu hiển thị trên màn hình nhỏ (mobile / tablet)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  /* Căn giữa nội dung hero trên mobile */
+  .hero-section {
+    text-align: center;
+  }
+
+  .hero-section h1 {
+    font-size: 1.7rem;
+  }
+
+  .hero-image-wrapper img {
+    max-width: 80%;
+  }
+
+  /* Footer xếp cột theo chiều dọc trên mobile */
+  footer.footer {
+    text-align: left;
+  }
+
+  footer.footer .footer-top {
+    flex-direction: column;
+  }
+}
+
+

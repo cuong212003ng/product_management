@@ -1,4 +1,155 @@
 extends ../../layouts/default.pug
 
+include ../../mixins/box-head.pug
+
 block main 
-    h1 Trang chủ
+    .home-page
+        // Hero section
+        .hero-section.py-5.bg-white
+            .container
+                .row.align-items-center
+                    .col-lg-6.mb-4.mb-lg-0
+                        span.d-inline-block.mb-2.text-uppercase.fw-semibold.text-primary.small
+                            | Mua sắm dễ dàng, giao hàng nhanh chóng
+                        h1.fw-bold.mb-3
+                            | Cửa hàng trực tuyến cho mọi nhu cầu của bạn
+                        p.lead.text-muted.mb-4
+                            | Hàng trăm sản phẩm chất lượng, giá tốt, ưu đãi hấp dẫn mỗi ngày.
+                        .d-flex.flex-wrap.gap-2
+                            a.btn.btn-primary.btn-lg(href="/products")
+                                | Mua ngay
+                            a.btn.btn-outline-secondary.btn-lg(href="/about")
+                                | Tìm hiểu thêm
+                        .d-flex.flex-wrap.gap-3.mt-4
+                            .d-flex.flex-column
+                                span.fw-bold 1000+
+                                span.text-muted Sản phẩm đa dạng
+                            .d-flex.flex-column
+                                span.fw-bold 4.8/5
+                                span.text-muted Đánh giá hài lòng
+                            .d-flex.flex-column
+                                span.fw-bold 24/7
+                                span.text-muted Hỗ trợ khách hàng
+                    .col-lg-6
+                        .hero-image-wrapper.text-center
+                            img.img-fluid.rounded.shadow-sm(
+                                src="https://images.pexels.com/photos/3962285/pexels-photo-3962285.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                                alt="Mua sắm trực tuyến"
+                            )
+
+        // Featured categories
+        .container.my-5
+            +box-head('Danh mục nổi bật')
+            .row
+                .col-6.col-md-3.mb-3
+                    .card.h-100.border-0.shadow-sm
+                        .card-body.text-center
+                            h3.h6.fw-semibold.mb-1 Thời trang
+                            p.text-muted.mb-0 Áo, quần, phụ kiện
+                .col-6.col-md-3.mb-3
+                    .card.h-100.border-0.shadow-sm
+                        .card-body.text-center
+                            h3.h6.fw-semibold.mb-1 Điện tử
+                            p.text-muted.mb-0 Tai nghe, loa, phụ kiện
+                .col-6.col-md-3.mb-3
+                    .card.h-100.border-0.shadow-sm
+                        .card-body.text-center
+                            h3.h6.fw-semibold.mb-1 Làm đẹp
+                            p.text-muted.mb-0 Mỹ phẩm, chăm sóc da
+                .col-6.col-md-3.mb-3
+                    .card.h-100.border-0.shadow-sm
+                        .card-body.text-center
+                            h3.h6.fw-semibold.mb-1 Gia dụng
+                            p.text-muted.mb-0 Đồ dùng nhà cửa, bếp
+
+        // Featured products
+        .container.my-5
+            +box-head('Sản phẩm nổi bật')
+            .row
+                .col-sm-6.col-md-4.col-lg-3.mb-3
+                    .card.product-item.h-100
+                        .inner-image
+                            img.card-img-top(
+                                src="https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/1.webp"
+                                alt="Sản phẩm 1"
+                            )
+                        .card-body.inner-content
+                            h3.card-title.inner-title Mascara Lash Princess
+                            p.inner-price-now.mb-1 120.000 VNĐ
+                            p.inner-price-old.mb-1 160.000 VNĐ
+                            p.inner-discount.mb-0 Giảm 25%
+                .col-sm-6.col-md-4.col-lg-3.mb-3
+                    .card.product-item.h-100
+                        .inner-image
+                            img.card-img-top(
+                                src="https://cdn.dummyjson.com/product-images/electronics/apple-airpods-max-silver/1.webp"
+                                alt="Sản phẩm 2"
+                            )
+                        .card-body.inner-content
+                            h3.card-title.inner-title Tai nghe AirPods Max
+                            p.inner-price-now.mb-1 12.500.000 VNĐ
+                            p.inner-price-old.mb-1 14.000.000 VNĐ
+                            p.inner-discount.mb-0 Giảm 10%
+                .col-sm-6.col-md-4.col-lg-3.mb-3
+                    .card.product-item.h-100
+                        .inner-image
+                            img.card-img-top(
+                                src="https://cdn.dummyjson.com/product-images/home-decoration/plant-stand/1.webp"
+                                alt="Sản phẩm 3"
+                            )
+                        .card-body.inner-content
+                            h3.card-title.inner-title Kệ để cây trang trí
+                            p.inner-price-now.mb-1 350.000 VNĐ
+                            p.inner-price-old.mb-1 420.000 VNĐ
+                            p.inner-discount.mb-0 Giảm 15%
+                .col-sm-6.col-md-4.col-lg-3.mb-3
+                    .card.product-item.h-100
+                        .inner-image
+                            img.card-img-top(
+                                src="https://cdn.dummyjson.com/product-images/furniture/office-chair/1.webp"
+                                alt="Sản phẩm 4"
+                            )
+                        .card-body.inner-content
+                            h3.card-title.inner-title Ghế văn phòng công thái học
+                            p.inner-price-now.mb-1 2.100.000 VNĐ
+                            p.inner-price-old.mb-1 2.600.000 VNĐ
+                            p.inner-discount.mb-0 Giảm 20%
+
+        // Benefits section
+        .bg-light.py-5
+            .container
+                +box-head('Lý do bạn sẽ thích mua sắm tại chúng tôi')
+                .row
+                    .col-md-4.mb-3
+                        .p-3.h-100.bg-white.rounded.shadow-sm
+                            h3.h6.fw-semibold.mb-2 Giao hàng nhanh chóng
+                            p.text-muted.mb-0 Giao hàng toàn quốc, thời gian linh hoạt, lựa chọn đơn vị vận chuyển phù hợp.
+                    .col-md-4.mb-3
+                        .p-3.h-100.bg-white.rounded.shadow-sm
+                            h3.h6.fw-semibold.mb-2 Sản phẩm chính hãng
+                            p.text-muted.mb-0 Cam kết nguồn gốc rõ ràng, đổi trả dễ dàng nếu có lỗi từ nhà sản xuất.
+                    .col-md-4.mb-3
+                        .p-3.h-100.bg-white.rounded.shadow-sm
+                            h3.h6.fw-semibold.mb-2 Hỗ trợ tận tâm
+                            p.text-muted.mb-0 Đội ngũ CSKH luôn sẵn sàng tư vấn và hỗ trợ trước và sau bán.
+
+        // Newsletter section
+        .newsletter-section.py-5
+            .container
+                .row.justify-content-center
+                    .col-md-8
+                        +box-head('Nhận ưu đãi và tin tức mới nhất')
+                        p.text-muted.mb-4
+                            | Đăng ký email để không bỏ lỡ các chương trình khuyến mãi và sản phẩm mới.
+                        form#newsletterForm.row.g-2
+                            .col-sm-8
+                                input#newsletterEmail.form-control(
+                                    type="email",
+                                    name="email",
+                                    placeholder="Nhập email của bạn"
+                                )
+                            .col-sm-4
+                                button.btn.btn-primary.w-100(type="submit") Đăng ký ngay
+                            .col-12
+                                small#newsletterFeedback.form-text.text-muted
+                                    | Chúng tôi chỉ gửi cho bạn những thông tin hữu ích nhất.
