@@ -1,5 +1,4 @@
 extends ../../layouts/default.pug
-
 include ../../mixins/box-head.pug
 
 block main 
@@ -8,13 +7,14 @@ block main
             .col-12 
                 +box-head('Danh sách sản phẩm')
 
-        .row 
-            .col-sm-6.col-md-4.mb-3 
-                .card.product-item.h-100
-                    .inner-image
-                        img.card-img-top(src="https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/1.webp", alt="Sản phẩm 1")
-                    .card-body.inner-content
-                        h3.card-title.inner-title Sản phẩm 1
-                        p.inner-price-now.mb-1 100.000 VNĐ
-                        p.inner-price-old.mb-1 150.000 VNĐ
-                        p.inner-discount.mb-0 10%
+        .row
+            each item in products
+                .col-sm-6.col-md-4.mb-3 
+                    .card.product-item.h-100
+                        .inner-image
+                            img.card-img-top(src=item.thumbnail, alt=item.title)
+                        .card-body.inner-content
+                            h3.card-title.inner-title= item.title
+                            p.inner-price-now.mb-1= item.price + " $"
+                            p.inner-price-old.mb-1= item.oldPrice.toFixed(2) + " $"
+                            p.inner-discount.mb-0= item.discountPercentage + "%"
