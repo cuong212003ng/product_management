@@ -4,6 +4,7 @@ require('dotenv').config()
 const database = require('./config/database')
 
 const route = require('./routes/client/index.route')
+const adminRoute = require('./routes/admin/index.route')
 
 database.connect()
 
@@ -16,8 +17,9 @@ app.set('views', './views')
 
 app.use(express.static('public'))
 
-//Route
+//Routes
 route(app)
+adminRoute(app)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
