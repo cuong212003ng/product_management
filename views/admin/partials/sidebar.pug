@@ -7,26 +7,13 @@ aside.admin-sidebar
         nav.admin-sidebar-nav.flex-grow-1
             ul.nav.flex-column.mb-auto
                 li.nav-item
-                    a.nav-link.d-flex.align-items-center(href="/admin/dashboard")
+                    a.nav-link.d-flex.align-items-center(href=`${prefixAdmin}/dashboard`)
                         span.me-2 ▸
                         span Tổng quan
                 li.nav-item.mt-1
-                    a.nav-link.d-flex.align-items-center(href="/admin/products")
+                    a.nav-link.d-flex.align-items-center(href=`${prefixAdmin}/products`)
                         span.me-2 ▸
                         span Sản phẩm
-                li.nav-item.mt-1
-                    a.nav-link.d-flex.align-items-center(href="/admin/orders")
-                        span.me-2 ▸
-                        span Đơn hàng
-                li.nav-item.mt-1
-                    a.nav-link.d-flex.align-items-center(href="/admin/users")
-                        span.me-2 ▸
-                        span Người dùng
-                li.nav-item.mt-1
-                    a.nav-link.d-flex.align-items-center(href="/admin/settings")
-                        span.me-2 ▸
-                        span Cài đặt hệ thống
-
         .admin-sidebar-footer.p-3.border-top.small.text-muted
             | Trang quản trị sản phẩm
 
