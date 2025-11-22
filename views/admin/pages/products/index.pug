@@ -2,3 +2,54 @@ extends ../../layout/default.pug
 
 block main 
     h1 Danh sách sản phẩm
+
+    .table-responsive
+        table.table.table-hover.table-sm 
+            thead 
+                tr
+                    th STT
+                    th Hình ảnh
+                    th Tên sản phẩm
+                    th Giá
+                    th Giảm giá
+                    th Trạng thái
+                    th Hành động
+            tbody 
+                tr
+                    td 1
+                    td 
+                        img.img-thumbnail(src="https://via.placeholder.com/150" alt="Hình ảnh")
+                    td Sản phẩm 1
+                    td 100000
+                    td 10%
+                    td
+                        a(href="#" class="badge bg-success") Active
+                    td 
+                        a.btn.btn-sm.btn-primary(href="/admin/products/1") Sửa
+                        a.btn.btn-sm.btn-danger(href="/admin/products/1") Xóa
+
+                tr
+                    td 2            
+                    td 
+                        img.img-thumbnail(src="https://via.placeholder.com/150" alt="Hình ảnh")
+                    td Sản phẩm 2
+                    td 100000
+                    td 10%
+                    td
+                        a(href="#" class="badge bg-success") Active
+                    td 
+                        a.btn.btn-sm.btn-primary(href="/admin/products/2") Sửa
+                        a.btn.btn-sm.btn-danger(href="/admin/products/2") Xóa
+
+                tr
+                    td 3
+                    td 
+                        img.img-thumbnail(src="https://via.placeholder.com/150" alt="Hình ảnh" width="100px" height="auto")
+                    td Sản phẩm 3
+                    td 100000
+                    td 10%
+                    td
+                        a(href="#" class="badge bg-danger") Incative 
+                    td 
+                        a.btn.btn-sm.btn-primary(href="/admin/products/3") Sửa
+                        a.btn.btn-sm.btn-danger(href="/admin/products/3") Xóa

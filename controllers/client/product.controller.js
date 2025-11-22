@@ -12,8 +12,6 @@ module.exports.products = async (req, res) => {
         item.oldPrice = item.price * (1 + item.discountPercentage / 100)
     })
 
-    console.log(products)
-
     res.render('client/pages/products/index',{
         titlePage: 'Danh sách sản phẩm',
         products: products
