@@ -1,5 +1,5 @@
 const Product = require('../../model/product.model')
-
+//[GET] /products
 module.exports.products = async (req, res) => {
 
 
