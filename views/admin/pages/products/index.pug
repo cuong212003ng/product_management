@@ -2,29 +2,20 @@ extends ../../layout/default.pug
 
 block main 
     h1 Danh sách sản phẩm
-
     .card.mb-3 
         .card-header
             h5.card-title Bộ lọc và tìm kiếm
-        .card-body 
-            button(
-                class='btn btn-sm ml-1 btn-outline-success active'
-                button-status=''
-                ) Tất cả
-            button(
-                class='btn btn-sm btn-outline-success'
-                button-status='active'
-                ) Hoạt động
-            button(
-                class='btn btn-sm btn-outline-success'
-                button-status='inactive'
-                ) Dừng hoạt động
+        .card-body
+            each item in filterStatus
+                button.btn.btn-sm.ml-1.btn-outline-success.ms-1(
+                    class=`${item.class}`
+                    button-status=item.status                   
+                ) #{item.name}
 
 
-    card.mb-3
+    .card.mb-3
         .card-header
             h5.card-title Danh sách sản phẩm
-        
         .card-body 
             .table-responsive
                 table.table.table-hover.table-sm 
