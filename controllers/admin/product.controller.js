@@ -2,6 +2,7 @@ const Product = require('../../model/product.model')
 
 const filterStatusHelper = require('../../helpers/filterStatus')
 const searchHelper = require('../../helpers/search')
+const paginationHelper = require('../../helpers/pagination')
 
 //[GET] /admin/products
 module.exports.products = async (req, res) => {
@@ -27,21 +28,16 @@ module.exports.products = async (req, res) => {
     //End Search
     
     //Pagination
-    let objectPagination = {
-        currentPage: 1,
-        limitItems: 5
-    }
+    const countProducts = await Product.countDocuments(find);
 
-    if(req.query.page){
-        objectPagination.currentPage = parseInt(req.query.page)       
-    }
-
-    // Trang hien tai - 1 * so luong san pham tren trang = so luong san pham can bo qua
-    objectPagination.skip = (objectPagination.currentPage - 1) * objectPagination.limitItems
-    
-    const countProducts = await Product.countDocuments(find)
-    const totalPage = Math.ceil(countProducts / objectPagination.limitItems)
-    objectPagination.totalPage = totalPage
+    let objectPagination =  paginationHelper.pagination(
+        {
+            currentPage: 1,
+            limitItems: 5
+        },
+        req.query,
+        countProducts
+    )
 
     //End Pagination
 

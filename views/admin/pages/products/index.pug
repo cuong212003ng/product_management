@@ -2,6 +2,7 @@ extends ../../layout/default.pug
 
 include ../../mixins/filterStatus.pug
 include ../../mixins/search.pug
+include ../../mixins/pagination.pug
 
 block main 
     h1 Danh sách sản phẩm
@@ -53,26 +54,5 @@ block main
                                     button(class=`btn btn-danger btn-sm`) Xóa
 
 
-    nav(aria-label='Page navigation')
-      ul.pagination
-        if pagination.currentPage > 1
-          li.page-item
-            button(
-              class="page-link"
-              button-pagination=pagination.currentPage - 1
-            ) Previous
+    +pagination(pagination)
 
-        -   for (var i = 1; i <= pagination.totalPage; i++) 
-            li(class=`${i == pagination.currentPage ? 'page-item active' : 'page-item'}`)
-                button(
-                    class="page-link"
-                    button-pagination=i
-                    ) #{i}
-                    
-        if pagination.currentPage < pagination.totalPage
-          li.page-item
-            button(
-              class="page-link"
-              button-pagination=pagination.currentPage + 1
-            ) Next
-        //-   a.page-link(href='#') Next
