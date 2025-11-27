@@ -43,9 +43,21 @@ block main
                                 td #{item.discountPercentage} %
                                 td
                                     if item.status == 'active'
-                                        a(href="#" class="badge bg-success") Hoạt động
+                                        a(
+                                            href=`javascript:`
+                                            data-status=item.status
+                                            data-id=item._id
+                                            button-change-status
+                                            class="badge bg-success"
+                                        ) Hoạt động
                                     else
-                                        a(href="#" class="badge bg-danger") Không hoạt động
+                                        a(
+                                            href=`javascript:`
+                                            data-id=item._id
+                                            data-status=item.status
+                                            button-change-status
+                                            class="badge bg-danger" 
+                                        ) Không hoạt động
                                 td                                
                                     button(
                                     class=`btn btn-warning btn-sm margin-right: 8px`,
@@ -55,4 +67,18 @@ block main
 
 
     +pagination(pagination)
+
+    //- Form change status nhằm thay đổi trạng thái của sản phẩm
+    form(
+        action=""
+        method="POST" 
+        id="form-change-status"
+        data-path=`${prefixAdmin}/products/change-status`
+    )
+
+
+
+
+
+    script(src="/admin/js/productScripts.js") 
 

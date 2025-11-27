@@ -1,19 +1,14 @@
-/* Admin layout with sidebar */
-
 html,
 body {
     height: 100%;
 }
 
 body {
-    /* Nền tổng thể tông xám xanh nhạt, đồng bộ với layout admin */
-    background-color: #e5edf7;
-    /* Chừa khoảng trống cho header cố định */
+    background: #e5edf7;
     padding-top: 64px;
 }
 
 .admin-header {
-    /* Header tông xanh đậm cố định trên cùng, đồng bộ sidebar */
     background: linear-gradient(90deg, #111827, #1f2937);
     position: fixed;
     top: 0;
@@ -39,7 +34,7 @@ body {
 .admin-search .form-control {
     min-width: 260px;
     border-color: #c4d3f5;
-    background-color: #f9fbff;
+    background: #f9fbff;
 }
 
 .admin-search .form-control:focus {
@@ -63,25 +58,22 @@ body {
 .admin-layout {
     display: flex;
     min-height: 100vh;
-    background-color: #e5edf7;
 }
 
 .admin-sidebar {
-    width: 260px;
-    background-color: #111827;
-    color: #e5e7eb;
-    box-shadow: 2px 0 6px rgba(15, 23, 42, 0.35);
-    /* Cố định sidebar bên trái, nằm dưới header */
     position: fixed;
     top: 64px;
     bottom: 0;
     left: 0;
+    width: 260px;
+    background: #111827;
+    color: #e5e7eb;
+    box-shadow: 2px 0 6px rgba(15, 23, 42, 0.35);
 }
 
 .admin-sidebar-inner {
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - 64px);
 }
 
 .admin-sidebar-header {
@@ -98,8 +90,7 @@ body {
 }
 
 .admin-sidebar-nav {
-    padding-top: 0.35rem;
-    padding-bottom: 0.75rem;
+    padding: 0.35rem 0 0.75rem;
 }
 
 .admin-sidebar-nav .nav-link {
@@ -107,7 +98,10 @@ body {
     font-size: 0.95rem;
     padding: 0.55rem 1.25rem;
     border-radius: 0;
-    transition: background-color 0.15s ease, color 0.15s ease, padding-left 0.15s ease,
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease,
+        padding-left 0.15s ease,
         box-shadow 0.15s ease;
 }
 
@@ -118,7 +112,7 @@ body {
 .admin-sidebar-nav .nav-link:hover,
 .admin-sidebar-nav .nav-link:focus {
     color: #ffffff;
-    background-color: #1f2937;
+    background: #1f2937;
     padding-left: 1.5rem;
 }
 
@@ -132,13 +126,12 @@ body {
 .admin-sidebar-footer {
     font-size: 0.8rem;
     opacity: 0.8;
-    background-color: #0b1120;
+    background: #0b1120;
 }
 
 .main-content {
     flex: 1;
     padding: 2rem 3rem;
-    /* Chừa không gian cho sidebar cố định bên trái */
     margin-left: 260px;
 }
 
@@ -147,6 +140,10 @@ body {
     font-weight: 600;
     color: #111827;
     margin-bottom: 1.25rem;
+}
+
+[button-change-status] {
+    text-decoration: none !important;
 }
 
 @media (max-width: 991.98px) {
@@ -164,14 +161,8 @@ body {
         box-shadow: 0 1px 4px rgba(15, 23, 42, 0.35);
     }
 
-    .admin-sidebar-inner {
-        min-height: auto;
-    }
-
     .main-content {
         padding: 1.25rem 1.5rem;
         margin-left: 0;
     }
 }
-
-

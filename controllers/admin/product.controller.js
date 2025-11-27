@@ -49,10 +49,22 @@ module.exports.products = async (req, res) => {
     skip(objectPagination.skip)
 
     res.render('admin/pages/products/index', {
-        titlePage: 'Quản lý',
+        titlePage: 'Sản phẩm',
         products: products,
         filterStatus: filterStatus,
         keyword: objectSearch.keyword,
         pagination: objectPagination
     })
+}
+
+//[PATCH] /admin/products/change-status/:status/:id
+module.exports.changeStatus = async (req, res) => {
+    const status = req.params.status
+    const id = req.params.id
+
+    await Product.updateOne({ _id: id }, { status: status })
+
+    // Sau khi cập nhật trạng thái, quay lại đúng trang trước đó (giữ nguyên page, filter, search)
+    const backUrl = req.get('Referrer')
+    res.redirect(backUrl)
 }
