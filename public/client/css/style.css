@@ -173,7 +173,7 @@ header.header .navbar {
 }
 
 footer.footer {
-  background: #222;
+  background: #111827;
   color: #f1f1f1;
   padding: 40px 0 20px;
   font-size: 14px;
@@ -237,7 +237,7 @@ footer.footer .footer-bottom {
   padding-top: 12px;
   text-align: center;
   font-size: 13px;
-  color: #bbbbbb;
+  color: #9ca3af;
 }
 
 @media (max-width: 768px) {
