@@ -1,0 +1,20 @@
+mixin formChangeMulti(path)
+    form(
+        action=path
+        method="POST"
+        form-change-multi
+    )
+        .row.g-2.align-items-center
+            .col-auto
+                select.form-select(name="type")
+                    option(value="active") Hoạt động
+                    option(value="inactive") Không hoạt động
+            .col-auto
+                input.form-control(
+                    type="text"
+                    name="ids"
+                    value=ids
+                    hidden
+                )
+            .col-auto
+                button.btn.btn-primary(type="submit") Áp dụng
