@@ -33,6 +33,7 @@ block main
                             th
                                 input(type="checkbox" name="checkAll")
                             th STT
+                            th Vị trí
                             th Hình ảnh
                             th Tên sản phẩm
                             th Giá
@@ -49,6 +50,14 @@ block main
                                         value=item._id
                                     )
                                 td #{index + 1}
+                                td 
+                                    input(
+                                        type='number'
+                                        value=item.position
+                                        style='width: 50px'
+                                        min='1'
+                                        name='position'
+                                    )
                                 td 
                                     img.img-thumbnail(src=item.thumbnail, alt=item.title width="100px" height="auto")
                                 td #{item.title}

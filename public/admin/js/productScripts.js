@@ -55,7 +55,6 @@ if (buttonsDelete.length > 0) {
 
 //Restore product
 const buttonsRestore = document.querySelectorAll('[button-restore]')
-
 if (buttonsRestore.length > 0) {
     const formRestore = document.querySelector('#form-restore')
 

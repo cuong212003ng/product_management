@@ -7,8 +7,11 @@ mixin formChangeMulti(path)
         .row.g-2.align-items-center
             .col-auto
                 select.form-select(name="type")
+                    option(disabled selected) --Chọn hành động--
                     option(value="active") Hoạt động
                     option(value="inactive") Không hoạt động
+                    option(value="delete-all") Xóa tất cả
+                    option(value="change-position") Cập nhật vị trí
             .col-auto
                 input.form-control(
                     type="text"
