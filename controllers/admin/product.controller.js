@@ -98,6 +98,9 @@ module.exports.changeMulti = async (req, res) => {
             break;
     }
 
+
+    req.flash('success', 'Cập nhật thành công')
+    
     const backUrl = req.get('Referrer')
     res.redirect(backUrl)
 }
