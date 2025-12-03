@@ -164,6 +164,7 @@ if(showAlert) {
 //Preview Image
 const uploadImage = document.querySelector('[upload-image]')
 if(uploadImage) {
+    const deleteImage = uploadImage.querySelector('[delete-image]')
     const inputImage = uploadImage.querySelector('[upload-image-input]')
     const previewImage = uploadImage.querySelector('[upload-image-preview]')
 
@@ -174,6 +175,15 @@ if(uploadImage) {
         if(file) {
             previewImage.src = URL.createObjectURL(file)
         }
+        deleteImage.removeAttribute('delete-image')
     })
+
+    if(previewImage.src) {
+        deleteImage.addEventListener('click', () => {
+            previewImage.src = ''
+            inputImage.value = ''
+            deleteImage.setAttribute('delete-image', 'true') 
+        })
+    }
 }
 //End Preview Image

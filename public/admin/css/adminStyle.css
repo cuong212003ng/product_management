@@ -265,4 +265,9 @@ body {
 [upload-image-preview][src=""] {
     display: none;
 }
+
+[delete-image] {
+    display: none;
+}
+
 /* End Preview Image */

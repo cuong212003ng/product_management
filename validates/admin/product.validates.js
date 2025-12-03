@@ -1,0 +1,12 @@
+const systemConfig = require('../../config/system')
+
+module.exports.createPost = (req, res, next) => {
+    if(!req.body.title){ //Nếu không có tên sản phẩm thì trả về lỗi
+        req.flash('error', 'Vui lòng nhập tên sản phẩm')
+        res.redirect(`${systemConfig.prefixAdmin}/products/create`)
+        return
+    }
+    console.log("OK");
+    next()
+    
+}
