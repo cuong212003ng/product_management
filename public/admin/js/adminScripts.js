@@ -159,6 +159,21 @@ if(showAlert) {
         showAlert.classList.add('alert-hidden')
     })
 }
-
-
 //End Show Alert
+
+//Preview Image
+const uploadImage = document.querySelector('[upload-image]')
+if(uploadImage) {
+    const inputImage = uploadImage.querySelector('[upload-image-input]')
+    const previewImage = uploadImage.querySelector('[upload-image-preview]')
+
+    inputImage.addEventListener('change', (e) => {
+        console.log(e.target.files);
+        const file = e.target.files[0]
+
+        if(file) {
+            previewImage.src = URL.createObjectURL(file)
+        }
+    })
+}
+//End Preview Image
