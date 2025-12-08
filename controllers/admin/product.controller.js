@@ -177,10 +177,6 @@ module.exports.createPost = async (req, res) => {
     req.body.discountPercentage = parseFloat(req.body.discountPercentage)
     req.body.stock = parseInt(req.body.stock)
     
-    //Nếu có file thì lưu hình ảnh vào database
-    if(req.file) {
-        req.body.thumbnail = `/uploads/${req.file.filename}`
-    }
 
     if(req.body.position == ""){
         const countProduct = await Product.countDocuments()
