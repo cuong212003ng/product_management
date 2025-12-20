@@ -1,0 +1,16 @@
+extends ../../layout/default
+
+block main
+    h1 Danh mục sản phẩm
+
+    .card.mb-3
+        .card-header Danh sách 
+            .card-body 
+                .row 
+                    .col-8 
+                    .col-4.text-end
+                        a(
+                            href=`${prefixAdmin}/categories/products/create`
+                            class="btn btn-sm btn-outline-success"
+                        ) + Thêm danh mục sản phẩm
+                        
