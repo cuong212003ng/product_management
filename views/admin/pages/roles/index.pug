@@ -1,7 +1,12 @@
 extends ../../layout/default.pug
 
+include ../../mixins/showalert.pug
+
 block main
     h1(class="mb-4") Nhóm quyền hạn
+
+    +alertSuccess(5000)
+    +alertError(5000)
     .card.mb-3
         .card-header
             .row

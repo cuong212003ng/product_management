@@ -1,6 +1,7 @@
 const Roles = require('../../model/roles.model')
 
 const systemConfig = require('../../config/system')
+
 //[GET] /admin/roles
 module.exports.index = async (req, res) => {
     let find = {
@@ -33,5 +34,46 @@ module.exports.createPost = async (req, res) => {
     } catch (error) {
         req.flash('error', 'Thêm quyền hạn thất bại')
         res.redirect(`${systemConfig.prefixAdmin}/roles/create`)
+    }
+}
+
+//[GET] /admin/roles/edit/:id
+module.exports.edit = async (req, res) => {
+    try {
+        const find = {
+            deleted: false,
+            _id: req.params.id
+        }
+        const role = await Roles.findOne(find).lean() // ham lean de lay du lieu tu database ve dang object
+        
+        res.render('admin/pages/roles/edit', {
+            titlePage: 'Sửa nhóm quyền hạn',
+            role: role
+        })
+    } catch (error) {
+        req.flash('error', 'Sửa nhóm quyền hạn thất bại')
+        res.redirect(`${systemConfig.prefixAdmin}/roles`)
+    }
+}
+
+
+//[PATCH] /admin/roles/edit/:id
+module.exports.editPatch = async (req, res) => {
+    try {
+        const find = {
+            deleted: false,
+            _id: req.params.id
+        }
+        const role = await Roles.findOne(find).lean() // ham lean de lay du lieu tu database ve dang object
+        
+        role.title = req.body.title
+        role.description = req.body.description
+        await Roles.updateOne({ _id: req.params.id }, role)
+
+        req.flash('success', 'Sửa nhóm quyền hạn thành công')
+        res.redirect(`${systemConfig.prefixAdmin}/roles`)
+    } catch (error) {
+        req.flash('error', 'Sửa nhóm quyền hạn thất bại')
+        res.redirect(`${systemConfig.prefixAdmin}/roles`)
     }
 }
