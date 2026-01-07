@@ -11,6 +11,8 @@ router.post('/create', rolesController.createPost)
 
 router.get('/edit/:id', rolesController.edit)
 
+router.get('/detail/:id', rolesController.detail)
+
 router.patch('/edit/:id', rolesController.editPatch)
 
 router.get('/permissions', rolesController.permissions)

@@ -1,0 +1,38 @@
+extends ../../layout/default.pug
+
+include ../../mixins/showalert.pug
+
+
+block main
+    h1(class="mb-4") Chi tiết quyền hạn: #{role.title}
+    
+    +alertSuccess(5000)
+    
+    .card.mb-3
+        .card-header
+            h5.card-title Chi tiết quyền hạn: #{role.title} 
+
+        .card-body
+            form(
+                action=`${prefixAdmin}/roles/detail/${role._id}`
+                method="GET"
+            )
+                div(class="form-group")
+                    label(for="title") Tiêu đề
+                    input(
+                        type="text" 
+                        name="title" 
+                        id="title" 
+                        class="form-control"
+                        value=role.title
+                        readonly
+                    )
+                div(class="form-group")
+                    label(for="description") Mô tả
+                    textarea(
+                        name="description" 
+                        id="description" 
+                        class="form-control"
+                        rows="5"
+                        readonly
+                    ) #{role.description}

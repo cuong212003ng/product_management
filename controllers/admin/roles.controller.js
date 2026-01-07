@@ -37,6 +37,25 @@ module.exports.createPost = async (req, res) => {
     }
 }
 
+//[GET] /admin/roles/detail/:id
+module.exports.detail = async (req, res) => {
+    try {
+        const find = {
+            deleted: false,
+            _id: req.params.id
+        }
+        const role = await Roles.findOne(find).lean() // ham lean de lay du lieu tu database ve dang object
+        
+        res.render('admin/pages/roles/detail', {
+            titlePage: 'Sửa nhóm quyền hạn',
+            role: role
+        })
+    } catch (error) {
+        req.flash('error', 'Sửa nhóm quyền hạn thất bại')
+        res.redirect(`${systemConfig.prefixAdmin}/roles`)
+    }
+}
+
 //[GET] /admin/roles/edit/:id
 module.exports.edit = async (req, res) => {
     try {
