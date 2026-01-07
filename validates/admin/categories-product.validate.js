@@ -6,6 +6,6 @@ module.exports.createPost = (req, res, next) => {
         res.redirect(`${systemConfig.prefixAdmin}/categories/products/create`)
         return
     }
-    console.log("OK");
+
     next()  
 }

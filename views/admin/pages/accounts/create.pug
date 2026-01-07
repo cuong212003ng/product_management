@@ -1,0 +1,105 @@
+extends ../../layout/default.pug
+
+include ../../mixins/showalert.pug
+
+block main
+    h1(class="mb-4") Thêm tài khoản
+
+    +alertSuccess(5000)
+    +alertError(5000)
+
+
+    form(
+        action=`${prefixAdmin}/accounts/create`
+        method="POST"
+        enctype="multipart/form-data"
+    )
+        div(class="form-group")
+            label(for="fullName") Họ và tên
+            input(
+                type="text"
+                name="fullName"
+                id="fullName"
+                class="form-control"
+                required
+            )
+        div(class="form-group")
+            label(for="email") Email
+            input(
+                type="email"
+                name="email"
+                id="email"
+                class="form-control"
+                required
+            )
+        div(class="form-group")
+            label(for="password") Mật khẩu *
+            input(
+                type="password"
+                name="password"
+                id="password"
+                class="form-control"
+                required
+            )
+
+        div(class="form-group")
+            label(for="phone") Số điện thoại
+            input(
+                type="text"
+                name="phone"
+                id="phone"
+                class="form-control"
+            )
+
+        div(
+            class="form-group"
+            upload-image
+        )
+            label(for="avatar") Avatar
+            input(
+                type="file"
+                name="avatar"
+                id="avatar"
+                class="form-control-file"
+                accept="image/*"
+                upload-image-input
+            )
+            img(
+                src=""
+                class="img-preview"
+                upload-image-preview
+            )
+
+        div(class="form-group")
+            label(for="role_id") Quyền hạn
+            select(
+                name="role_id"
+                id="role_id"
+                class="form-control"
+            )
+                option(disabled) -- Chọn quyền hạn --
+                option(value="") Quản trị viên
+                option(value="") Quản lý nội dung
+
+        div(class="form-group form-check form-check-inline")
+            input(
+                type="radio"
+                class="form-check-input"
+                id="statusActive"
+                name="status"
+                value="active"
+                checked
+            )
+            label(for="statusActive" class="form-check-label") Hoạt động         
+    
+        div(class="form-group form-check form-check-inline")
+            input(
+                type="radio"
+                class="form-check-input"
+                id="statusInactive"
+                name="status"
+                value="inactive"
+            )
+            label(for="statusInactive" class="form-check-label") Dừng hoạt động
+        div(class="form-group")
+            button(type="submit" class="btn btn-primary") Thêm tài khoản
