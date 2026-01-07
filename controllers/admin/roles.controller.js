@@ -94,7 +94,6 @@ module.exports.edit = async (req, res) => {
     }
 }
 
-
 //[PATCH] /admin/roles/edit/:id
 module.exports.editPatch = async (req, res) => {
     try {

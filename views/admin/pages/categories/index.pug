@@ -34,3 +34,12 @@ block main
                                 th Hành động
                         tbody
                             +tableTree(records)
+
+    form(
+        action=""
+        method="POST"
+        id="form-delete"
+        data-path=`${prefixAdmin}/categories/products/delete`
+    )
+
+    script(src="/admin/js/categoriesScript.js") 

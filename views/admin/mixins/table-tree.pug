@@ -53,9 +53,11 @@ mixin tableTree(items, level = 1)
                     button-edit
                 ) Sửa    
                 a(
-                    href=`${prefixAdmin}/categories/products/delete/${item._id}`
+                    href=`javascript:`
                     class=`btn btn-danger btn-sm`
                     style="margin-right: 8px"
+                    data-id=item._id
+                    button-delete
                 ) Xóa
         if item.children && item.children.length > 0
             +tableTree(item.children, level + 1)

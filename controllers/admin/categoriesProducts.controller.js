@@ -117,3 +117,25 @@ module.exports.detail = async (req, res) => {
         res.redirect(`${systemConfig.prefixAdmin}/categories/products`)
     }
 }
+
+//[DELETE] /admin/categories/products/delete/:id
+module.exports.delete = async (req, res) => {
+    const id = req.params.id
+
+    console.log(id);
+    
+
+    //Xóa mềm danh mục sản phẩm bằng cách đánh dấu deleted = true
+    await ProductCategories.updateOne({ _id: id }, {
+        deleted: true,
+        deletedAt: new Date() // Them thoi gian xoa
+        })
+
+    //Xóa vĩnh viễn danh mục sản phẩm bằng cách xóa document trong database
+    //await Product.deleteOne({ _id: id })
+
+    req.flash('success', 'Xóa danh mục sản phẩm thành công')
+
+    const backUrl = req.get('Referrer')
+    res.redirect(backUrl)
+}

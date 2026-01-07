@@ -32,4 +32,6 @@ router.patch(
 
 router.get('/detail/:id', categoriesProductsController.detail)
 
+router.delete('/delete/:id', categoriesProductsController.delete)
+
 module.exports = router
