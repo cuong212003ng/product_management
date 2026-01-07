@@ -35,4 +35,21 @@ block main
                             td
                                 a(href=`${prefixAdmin}/roles/detail/${record._id}`, class="btn btn-sm btn-secondary" style="margin-right: 8px") Chi tiết
                                 a(href=`${prefixAdmin}/roles/edit/${record._id}`, class="btn btn-sm btn-primary" style="margin-right: 8px") Sửa
-                                a(href=`${prefixAdmin}/roles/delete/${record._id}`, class="btn btn-sm btn-danger" style="margin-right: 8px") Xóa
+                                button(
+                                    class="btn btn-sm btn-danger" 
+                                    style="margin-right: 8px" 
+                                    data-id=record._id 
+                                    button-delete
+                                ) Xóa
+
+
+
+    form(
+        action=""
+        method="POST"
+        id="form-delete"
+        data-path=`${prefixAdmin}/roles/delete`
+    )
+
+
+    script(src="/admin/js/roles.js") 

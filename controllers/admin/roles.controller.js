@@ -37,6 +37,25 @@ module.exports.createPost = async (req, res) => {
     }
 }
 
+//[DELETE] /admin/roles/delete/:id
+module.exports.delete = async (req, res) => {
+    const id = req.params.id
+
+    //Xóa mềm quyền hạn bằng cách đánh dấu deleted = true
+    await Roles.updateOne({ _id: id }, {
+        deleted: true,
+        deletedAt: new Date() // Them thoi gian xoa
+        })
+
+    //Xóa vĩnh viễn quyền hạn bằng cách xóa document trong database
+    //await Product.deleteOne({ _id: id })
+
+    req.flash('success', 'Xóa quyền hạn thành công')
+
+    const backUrl = req.get('Referrer')
+    res.redirect(backUrl)
+}
+
 //[GET] /admin/roles/detail/:id
 module.exports.detail = async (req, res) => {
     try {

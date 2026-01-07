@@ -9,6 +9,8 @@ router.get('/create', rolesController.create)
 
 router.post('/create', rolesController.createPost)
 
+router.delete('/delete/:id', rolesController.delete)
+
 router.get('/edit/:id', rolesController.edit)
 
 router.get('/detail/:id', rolesController.detail)
