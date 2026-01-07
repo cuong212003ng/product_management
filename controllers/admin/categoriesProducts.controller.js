@@ -97,3 +97,23 @@ module.exports.editPatch = async (req, res) => {
     req.flash('success', 'Sửa danh mục sản phẩm thành công')
     res.redirect(`${systemConfig.prefixAdmin}/categories/products`)
 }
+
+//[GET] /admin/categories/products/detail/:id
+module.exports.detail = async (req, res) => {
+    try {
+        let find = {
+            deleted: false,
+            _id: req.params.id
+        }
+
+        const data = await ProductCategories.findOne(find).lean() // ham lean de lay du lieu tu database ve dang object
+
+        res.render('admin/pages/categories/detail', {
+            titlePage: 'Chi tiết danh mục sản phẩm',
+            data: data
+    })
+    } catch (error) {
+        req.flash('error', 'Lỗi trang')
+        res.redirect(`${systemConfig.prefixAdmin}/categories/products`)
+    }
+}

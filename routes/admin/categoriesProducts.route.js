@@ -30,4 +30,6 @@ router.patch(
     categoriesProductsController.editPatch
 )
 
+router.get('/detail/:id', categoriesProductsController.detail)
+
 module.exports = router

@@ -1,0 +1,68 @@
+extends ../../layout/default.pug
+
+include ../../mixins/showalert.pug
+
+
+block main
+    h1(class="mb-4") Chi tiết danh mục: #{data.title}
+    
+    +alertSuccess(5000)
+    
+    .card.mb-3
+        .card-header
+            h5.card-title Chi tiết danh mục: #{data.title} 
+
+        .card-body
+            form(
+                action=`${prefixAdmin}/categories/detail/${data._id}`
+                method="GET"
+            )
+                div(class="form-group")
+                    label(for="title") Tiêu đề
+                    input(
+                        type="text" 
+                        name="title" 
+                        id="title" 
+                        class="form-control"
+                        value=data.title
+                        readonly
+                    )
+                div(class="form-group")
+                    label(for="description") Mô tả
+                    textarea(
+                        name="description" 
+                        id="description" 
+                        class="form-control"
+                        rows="5"
+                        readonly
+                    ) #{data.description}
+
+                div(class="form-group")
+                    label(for="thumbnail") Hình ảnh
+                    img(
+                        src=data.thumbnail
+                        alt=data.title
+                        class="img-fluid"
+                        style="max-width: 200px; max-height: 200px; margin-left: auto; margin-right: auto; display: block;"
+                        readonly
+                    )
+                div(class="form-group")
+                    label(for="status") Trạng thái
+                    input(
+                        type="text" 
+                        name="status" 
+                        id="status" 
+                        class="form-control"
+                        value=data.status
+                        readonly
+                    )
+                div(class="form-group")
+                    label(for="position") Vị trí
+                    input(
+                        type="number" 
+                        name="position" 
+                        id="position" 
+                        class="form-control"
+                        value=data.position
+                        readonly
+                    )
