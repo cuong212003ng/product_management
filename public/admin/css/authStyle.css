@@ -1,0 +1,133 @@
+html,
+body {
+    height: 100%;
+}
+
+body.auth-body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background:
+        radial-gradient(circle at top, #1f2937 0, #020617 55%, #000000 100%);
+    color: #0f172a;
+}
+
+/* Header trên trang đăng nhập: đơn giản, gọn */
+.admin-header {
+    background: transparent;
+    border-bottom: none;
+    box-shadow: none;
+    padding-top: 1.25rem;
+    padding-bottom: 0.75rem;
+}
+
+.admin-header-title {
+    color: #e5e7eb;
+}
+
+.admin-header-subtitle {
+    color: #9ca3af;
+}
+
+/* Khung bố cục cho phần nội dung auth */
+.admin-layout {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-sidebar-hover-zone {
+    display: none;
+}
+
+main.main-content {
+    flex: 1;
+    padding: 1.5rem 1rem;
+}
+
+/* Card đăng nhập tối giản, nổi trên nền tối */
+body.auth-body .card {
+    border: none;
+    border-radius: 0.9rem;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.6);
+    background: #ffffff;
+}
+
+body.auth-body .card-body {
+    padding: 2.25rem 2rem 2rem;
+}
+
+body.auth-body img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body.auth-body h4 {
+    font-size: 0.95rem;
+    letter-spacing: 0.16em;
+}
+
+body.auth-body h5 {
+    font-size: 1.4rem;
+}
+
+/* Input & button */
+body.auth-body .form-group + .form-group {
+    margin-top: 0.85rem;
+}
+
+body.auth-body .form-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #374151;
+}
+
+body.auth-body .form-control {
+    border-radius: 0.55rem;
+    border-color: #d1d5db;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.9rem;
+}
+
+body.auth-body .form-control:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 0.12rem rgba(37, 99, 235, 0.28);
+}
+
+body.auth-body .btn-primary {
+    border-radius: 999px;
+    padding: 0.55rem 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    background: linear-gradient(90deg, #2563eb, #1d4ed8);
+    border: none;
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
+}
+
+body.auth-body .btn-primary:hover {
+    background: linear-gradient(90deg, #1d4ed8, #1e40af);
+}
+
+/* Alert thông báo lỗi trên trang đăng nhập */
+[show-alert] {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 1055;
+}
+
+/* Responsive cho màn nhỏ */
+@media (max-width: 575.98px) {
+    body.auth-body .card-body {
+        padding: 1.75rem 1.4rem 1.4rem;
+    }
+
+    main.main-content {
+        padding: 1.25rem 0.75rem;
+    }
+}
+

@@ -107,7 +107,19 @@ module.exports.editPatch = async (req, res) => {
         const data = await Accounts.findOne(find).lean()
 
         data.fullName = req.body.fullName
-        data.email = req.body.email
+
+        const emailExists = await Accounts.findOne({
+            email: req.body.email,
+            deleted: false,
+            _id: { $ne: req.params.id }
+        })
+        if(emailExists){
+            req.flash('error', `Email ${req.body.email} đã tồn tại`)
+            res.redirect(`${systemConfig.prefixAdmin}/accounts/edit/${req.params.id}`)
+            return
+        } else {
+            data.email = req.body.email
+        }
 
         if(req.body.password){
             data.password = md5(req.body.password)
@@ -131,6 +143,6 @@ module.exports.editPatch = async (req, res) => {
 
         req.flash('error', 'Sửa tài khoản thất bại')
         res.redirect(`${systemConfig.prefixAdmin}/accounts/edit/${req.params.id}`)
-        
+
     }
 }
