@@ -56,19 +56,22 @@ block main
             upload-image
         )
             label(for="avatar") Avatar
-            input(
-                type="file"
-                name="avatar"
-                id="avatar"
-                class="form-control-file"
-                accept="image/*"
-                upload-image-input
-            )
-            img(
-                src=""
-                class="img-preview"
-                upload-image-preview
-            )
+            div(class="d-flex align-items-center")
+                div(class="mr-3")
+                    img(
+                        src=""
+                        class="img-preview rounded-circle border img-thumbnail"
+                        upload-image-preview
+                    )
+                div
+                    input(
+                        type="file"
+                        name="avatar"
+                        id="avatar"
+                        class="form-control-file mb-1"
+                        accept="image/*"
+                        upload-image-input
+                    )
 
         div(class="form-group")
             label(for="role_id") Quyền hạn
@@ -78,8 +81,8 @@ block main
                 class="form-control"
             )
                 option(disabled) -- Chọn quyền hạn --
-                option(value="") Quản trị viên
-                option(value="") Quản lý nội dung
+                each role in roles
+                    option(value=role._id) #{role.title}
 
         div(class="form-group form-check form-check-inline")
             input(

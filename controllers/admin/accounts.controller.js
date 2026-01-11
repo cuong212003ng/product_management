@@ -1,5 +1,6 @@
+var md5 = require('md5');
 const Accounts = require('../../model/accounts.model')
-
+const Roles = require('../../model/roles.model')
 const systemConfig = require('../../config/system')
 
 //[GET] /admin/accounts
@@ -8,8 +9,17 @@ module.exports.index = async (req, res) => {
         deleted: false
     }
 
-    const records = await Accounts.find(find)
+    const records = await Accounts.find(find).select('-password -token -deleted -deletedAt')
 
+    for (const record of records) {
+
+        const role = await Roles.findOne({
+            _id: record.role_id,
+            deleted: false
+        })
+        record.role = role
+    }
+    
     res.render('admin/pages/accounts/index', {
         titlePage: 'Trang tài khoản',
         records: records
@@ -18,14 +28,47 @@ module.exports.index = async (req, res) => {
 
 //[GET] /admin/accounts/create
 module.exports.create = async (req, res) => {
+
+    const roles = await Roles.find({
+        deleted: false
+    })
+
+    const titles = roles.map(role => role.title)
+    
     res.render('admin/pages/accounts/create', {
-        titlePage: 'Thêm tài khoản'
+        titlePage: 'Thêm tài khoản',
+        roles: roles,
+        titles: titles
     })
 }
 
 //[POST] /admin/accounts/create
 module.exports.createPost = async (req, res) => {
-    console.log(req.body)
-    console.log(req.file)
-    // res.redirect(`${systemConfig.prefixAdmin}/accounts`)
+    try {
+
+        const emailExists = await Accounts.findOne({
+            email: req.body.email,
+            deleted: false
+        })
+
+        if(emailExists){
+            req.flash('error', 'Email đã tồn tại')
+            res.redirect(`${systemConfig.prefixAdmin}/accounts/create`)
+        } else {
+            
+            const record = new Accounts(req.body)
+
+            record.password = md5(req.body.password)
+
+            await record.save()
+
+            req.flash('success', 'Thêm tài khoản thành công')
+            res.redirect(`${systemConfig.prefixAdmin}/accounts`)
+        }
+    } catch (error) {
+
+        req.flash('error', 'Thêm tài khoản thất bại')
+        res.redirect(`${systemConfig.prefixAdmin}/accounts/create`)
+
+    }
 }

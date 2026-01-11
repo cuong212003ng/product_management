@@ -17,4 +17,42 @@ block main
                         href=`${prefixAdmin}/accounts/create`
                         class="btn btn-sm btn-outline-success"
                     ) + Thêm tài khoản
+
+            table(class="table table-hover table-sm")
+                thead
+                    tr
+                        th STT
+                        th Họ và tên
+                        th Avatar
+                        th Email
+                        th Số điện thoại
+                        th Quyền hạn
+                        th Trạng thái
+                        th Hành động
+                tbody
+                    each record, index in records
+                        tr
+                            td #{index + 1}
+                            td #{record.fullName}
+                            td
+                                img(src=record.avatar, alt=record.fullName width="100px" height="auto")
+                            td #{record.email}
+                            td #{record.phone}
+                            td #{record.role.title}
+                            td
+                                if(record.status == 'active')
+                                    span.badge.bg-success Hoạt động
+                                else
+                                    span.badge.bg-danger Dừng hoạt động
+                            td
+                                a(href=`${prefixAdmin}/accounts/edit/${record._id}`, class="btn btn-sm btn-primary" style="margin-right: 8px") Sửa
+                                button(
+                                    class="btn btn-sm btn-danger" 
+                                    style="margin-right: 8px" 
+                                    data-id=record._id 
+                                    button-delete
+                                ) Xóa
                     
+                    form(action="" method="POST" id="form-delete" data-path=`${prefixAdmin}/accounts/delete`)
+
+    script(src="/admin/js/accounts.js") 
