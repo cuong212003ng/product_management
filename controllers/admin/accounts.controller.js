@@ -72,3 +72,65 @@ module.exports.createPost = async (req, res) => {
 
     }
 }
+
+
+//[GET] /admin/accounts/edit/:id
+module.exports.edit = async (req, res) => {
+
+    const data = await Accounts.findOne({
+        deleted: false,
+        _id: req.params.id
+    })
+
+    const role = await Roles.findOne({
+        deleted: false,
+        _id: data.role_id
+    })
+
+    data.role = role
+
+    res.render('admin/pages/accounts/edit', {
+        titlePage: 'Sửa tài khoản',
+        data: data
+    })
+}
+
+//[PATCH] /admin/accounts/edit/:id
+module.exports.editPatch = async (req, res) => {
+    try {
+
+        const find = {
+            deleted: false,
+            _id: req.params.id
+        }
+
+        const data = await Accounts.findOne(find).lean()
+
+        data.fullName = req.body.fullName
+        data.email = req.body.email
+
+        if(req.body.password){
+            data.password = md5(req.body.password)
+        }
+
+        data.phone = req.body.phone
+
+        if(req.file){
+            data.avatar = `/uploads/${req.file.filename}`
+        }
+
+        data.role_id = req.body.role_id
+        data.status = req.body.status
+
+        await Accounts.updateOne(find, data)
+
+        req.flash('success', 'Sửa tài khoản thành công')
+        res.redirect(`${systemConfig.prefixAdmin}/accounts`)
+
+    } catch (error) {
+
+        req.flash('error', 'Sửa tài khoản thất bại')
+        res.redirect(`${systemConfig.prefixAdmin}/accounts/edit/${req.params.id}`)
+        
+    }
+}

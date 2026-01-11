@@ -22,4 +22,13 @@ router.post(
     accountsController.createPost
 )
 
+router.get('/edit/:id', accountsController.edit)
+
+router.patch('/edit/:id',
+    upload.single('avatar'),
+    uploadCloudinary.upload,
+    accountsValidates.editValidate,
+    accountsController.editPatch
+)
+
 module.exports = router;

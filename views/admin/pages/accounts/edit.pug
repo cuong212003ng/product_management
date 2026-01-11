@@ -1,0 +1,97 @@
+extends ../../layout/default.pug
+    
+include ../../mixins/showalert.pug
+include ../../mixins/select-tree.pug    
+
+block main
+    +alertSuccess(5000)
+    +alertError(5000)
+
+    h1(class="mb-4") Sửa tài khoản: #{data.fullName}
+    
+    form(
+        action=`${prefixAdmin}/accounts/edit/${data._id}?_method=PATCH`
+        method="POST"
+        id="form-edit-account"
+        data-id=data._id
+        enctype="multipart/form-data"
+    )
+        div(class="form-group")
+            label(for="fullName") Họ và tên
+            input(
+                type="text"
+                name="fullName"
+                id="fullName"
+                class="form-control"
+                value=data.fullName
+            )
+        div(class="form-group")
+            label(for="email") Email
+            input(
+                type="email"
+                name="email"
+                id="email"
+                class="form-control"
+                value=data.email
+            )
+        div(class="form-group")
+            label(for="password") Mật khẩu
+            input(
+                type="password"
+                name="password"
+                id="password"
+                class="form-control"
+                value=data.password
+            )
+        div(class="form-group")
+            label(for="phone") Số điện thoại
+            input(
+                type="text"
+                name="phone"
+                id="phone"
+                class="form-control"
+                value=data.phone
+            )
+        div(class="form-group")
+            label(for="avatar") Avatar
+            input(
+                type="file"
+                name="avatar"
+                id="avatar"
+                class="form-control-file"
+                accept="image/*"
+                upload-image-input
+                value=data.avatar
+            )
+        div(class="form-group")
+            label(for="role_id") Quyền hạn
+            select(
+                name="role_id"
+                id="role_id"
+                class="form-control"
+                required
+            )
+                option(disabled) -- Chọn quyền hạn --
+                option(value=data.role._id selected=true) #{data.role.title}
+        div(class="form-group form-check form-check-inline")
+            input(
+                type="radio"
+                class="form-check-input"
+                id="statusActive"
+                name="status"
+                value="active"
+                checked=data.status == 'active'
+            )
+            label(for="statusActive" class="form-check-label") Hoạt động
+        div(class="form-group form-check form-check-inline")
+            input(
+                type="radio"
+                class="form-check-input"
+                id="statusInactive"
+                name="status"
+                value="inactive"
+                checked=data.status == 'inactive'
+            )
+            label(for="statusInactive" class="form-check-label") Dừng hoạt động
+        div(class="form-group")
+            button(type="submit" class="btn btn-primary") Sửa tài khoản
