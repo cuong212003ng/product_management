@@ -4,9 +4,14 @@ const md5 = require('md5')
 
 //[GET] /admin/auth/login
 module.exports.login = async (req, res) => {
-    res.render('admin/pages/auth/login', {
-        titlePage: 'Đăng nhập hệ thống'
-    })
+
+    if(req.cookies.token){
+        return res.redirect(`${systemConfig.prefixAdmin}/dashboard`)
+    } else {
+        res.render('admin/pages/auth/login', {
+            titlePage: 'Đăng nhập hệ thống'
+        })
+    }
 }
 
 //[POST] /admin/auth/login
