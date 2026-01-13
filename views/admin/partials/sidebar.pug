@@ -11,24 +11,29 @@ aside.admin-sidebar
                         span.me-2 ▸
                         span Tổng quan
                 li.nav-item.mt-1
-                    a.nav-link.d-flex.align-items-center(href=`${prefixAdmin}/products`)
-                        span.me-2 ▸
-                        span Sản phẩm
+                    if(role.permissions.includes("products_view"))
+                        a.nav-link.d-flex.align-items-center(href=`${prefixAdmin}/products`)
+                            span.me-2 ▸
+                            span Sản phẩm
                 li.nav-item.mt-1
-                    a.nav-link.d-flex.align-items-center(href=`${prefixAdmin}/categories/products`)
-                        span.me-2 ▸
-                        span Danh mục sản phẩm
+                    if(role.permissions.includes("products-categories_view"))
+                        a.nav-link.d-flex.align-items-center(href=`${prefixAdmin}/categories/products`)
+                            span.me-2 ▸
+                            span Danh mục sản phẩm
                 li.nav-item.mt-1
-                    a.nav-link.d-flex.align-items-center(href=`${prefixAdmin}/roles`)
-                        span.me-2 ▸
-                        span Nhóm quyền hạn
+                    if(role.permissions.includes("roles_view"))
+                        a.nav-link.d-flex.align-items-center(href=`${prefixAdmin}/roles`)
+                            span.me-2 ▸
+                            span Nhóm quyền hạn
                 li.nav-item.mt-1
-                    a.nav-link.d-flex.align-items-center(href=`${prefixAdmin}/roles/permissions`)
-                        span.me-2 ▸
-                        span Phân quyền hạn
+                    if(role.permissions.includes("permissions_view"))
+                        a.nav-link.d-flex.align-items-center(href=`${prefixAdmin}/roles/permissions`)
+                            span.me-2 ▸
+                            span Phân quyền hạn
                 li.nav-item.mt-1
-                    a.nav-link.d-flex.align-items-center(href=`${prefixAdmin}/accounts`)
-                        span.me-2 ▸
-                        span Tài khoản
+                    if(role.permissions.includes("accounts_view"))
+                        a.nav-link.d-flex.align-items-center(href=`${prefixAdmin}/accounts`)
+                            span.me-2 ▸
+                            span Tài khoản
         .admin-sidebar-footer.p-3.border-top.small.text-muted
             | Trang quản trị sản phẩm
