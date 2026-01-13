@@ -53,6 +53,11 @@ block main
                                     button-delete
                                 ) Xóa
                     
-                    form(action="" method="POST" id="form-delete" data-path=`${prefixAdmin}/accounts/delete`)
+    form(
+        action="" 
+        method="POST" 
+        id="form-delete" 
+        data-path=`${prefixAdmin}/accounts/delete`
+    )            
 
-    script(src="/admin/js/accounts.js") 
+    script(src="/admin/js/accountScripts.js") 

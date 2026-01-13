@@ -154,3 +154,22 @@ module.exports.editPatch = async (req, res) => {
 
     }
 }
+
+//[DELETE] /admin/accounts/delete/:id
+module.exports.delete = async (req, res) => {
+    const id = req.params.id
+
+    //Xóa mềm quyền hạn bằng cách đánh dấu deleted = true
+    await Accounts.updateOne({ _id: id }, {
+        deleted: true,
+        deletedAt: new Date() // Them thoi gian xoa
+        })
+
+    //Xóa vĩnh viễn quyền hạn bằng cách xóa document trong database
+    //await Product.deleteOne({ _id: id })
+
+    req.flash('success', 'Xóa tài khoản thành công')
+
+    const backUrl = req.get('Referrer')
+    res.redirect(backUrl)
+}

@@ -31,4 +31,6 @@ router.patch('/edit/:id',
     accountsController.editPatch
 )
 
+router.delete('/delete/:id', accountsController.delete)
+
 module.exports = router;
