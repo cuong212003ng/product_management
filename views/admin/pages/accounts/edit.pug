@@ -71,8 +71,12 @@ block main
                 class="form-control"
                 required
             )
-                option(disabled) -- Chọn quyền hạn --
-                option(value=data.role._id selected=true) #{data.role.title}
+                option(disabled selected=!data.role_id) -- Chọn quyền hạn --
+                each role in roles
+                    option(
+                        value=role._id
+                        selected=role._id == data.role_id
+                    ) #{role.title}
         div(class="form-group form-check form-check-inline")
             input(
                 type="radio"

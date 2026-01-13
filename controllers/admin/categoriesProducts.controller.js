@@ -122,9 +122,6 @@ module.exports.detail = async (req, res) => {
 module.exports.delete = async (req, res) => {
     const id = req.params.id
 
-    console.log(id);
-    
-
     //Xóa mềm danh mục sản phẩm bằng cách đánh dấu deleted = true
     await ProductCategories.updateOne({ _id: id }, {
         deleted: true,

@@ -1,4 +1,4 @@
-var md5 = require('md5');
+const md5 = require('md5');
 const Accounts = require('../../model/accounts.model')
 const Roles = require('../../model/roles.model')
 const systemConfig = require('../../config/system')
@@ -52,8 +52,10 @@ module.exports.createPost = async (req, res) => {
         })
 
         if(emailExists){
+            
             req.flash('error', 'Email đã tồn tại')
             res.redirect(`${systemConfig.prefixAdmin}/accounts/create`)
+
         } else {
             
             const record = new Accounts(req.body)
@@ -73,25 +75,30 @@ module.exports.createPost = async (req, res) => {
     }
 }
 
-
 //[GET] /admin/accounts/edit/:id
 module.exports.edit = async (req, res) => {
 
     const data = await Accounts.findOne({
         deleted: false,
         _id: req.params.id
-    })
+    }).lean()
 
     const role = await Roles.findOne({
         deleted: false,
         _id: data.role_id
-    })
+    }).lean()
 
     data.role = role
 
+    // Lấy toàn bộ quyền hạn còn hoạt động
+    const roles = await Roles.find({
+        deleted: false,
+    }).lean()
+
     res.render('admin/pages/accounts/edit', {
         titlePage: 'Sửa tài khoản',
-        data: data
+        data: data,
+        roles: roles
     })
 }
 
@@ -113,6 +120,7 @@ module.exports.editPatch = async (req, res) => {
             deleted: false,
             _id: { $ne: req.params.id }
         })
+
         if(emailExists){
             req.flash('error', `Email ${req.body.email} đã tồn tại`)
             res.redirect(`${systemConfig.prefixAdmin}/accounts/edit/${req.params.id}`)

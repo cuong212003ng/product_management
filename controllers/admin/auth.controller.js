@@ -46,7 +46,7 @@ module.exports.loginPost = async (req, res) => {
     res.cookie("token", user.token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
+        maxAge: 1000 * 60 * 60 * 24 
     })
     res.redirect(`${systemConfig.prefixAdmin}/dashboard`)
 }
